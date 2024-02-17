@@ -1,0 +1,24 @@
+api:
+  cgk:
+    key : CG-GKPDT69yYkZ7UP69mTP3tRCR
+    domain: "api.coingecko.com"
+    path:
+      endpoint: "api/v3/coins/markets"
+      currency: "usd"
+# https:// -> Enum
+# api.coingecko.com -> domain
+# /api/v3/ -> path
+# coins/markets -> endpoint
+# ?vs_currency=usd -> request param
+# x_cg_demo_api_key=CG-GKPDT69yYkZ7UP69mTP3tRCR ->request param
+
+# the special symbol like ?, / cannot decode. we can use method like 
+# .pathSegment, queryParam to solve the problem
+# or create more path the seperate each part of /
+# for example:
+# path:
+#      api: "api"
+#      verson: "v3"
+#      product: "coins"
+#      endpoint:＂markets"
+#      currency: usd
