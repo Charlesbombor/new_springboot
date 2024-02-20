@@ -37,8 +37,16 @@ public class CoingeckoHolder implements CoinService{
 
     return Arrays.stream(coins) //
       .collect(Collectors.toList());
-
 	}
+  @Override
+  public List<Coin> getCoinsById(String[] idsArray) {
+  List<Coin> allCoins = getCoins();
+  List<Coin> filteredCoins = allCoins.stream()
+  .filter(coin -> Arrays.asList(idsArray).contains(coin.getId()))
+  .collect(Collectors.toList());
+
+return filteredCoins;
+  }
 
   
 }

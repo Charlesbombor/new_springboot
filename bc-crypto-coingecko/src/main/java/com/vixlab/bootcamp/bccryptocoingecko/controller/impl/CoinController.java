@@ -21,5 +21,13 @@ public class CoinController implements CoinOperation {
   public List<Coin> getCoins() {
    return coinService.getCoins();
   }
+
+
+  @Override
+  public List<Coin> getCoinsById(String ids) {
+    String[] idsArray = ids.split(",");
+    List<Coin> coins = coinService.getCoinsById(idsArray);
+    return coins;
+  }
   
 }

@@ -6,4 +6,9 @@ import com.vixlab.bootcamp.bccryptocoingecko.model.Coin;
 
 public  interface CoinService {
   List<Coin> getCoins();
+
+ List<Coin> getCoinsById(String[] idsArray);
+
+
+
 }
