@@ -9,6 +9,6 @@ public  interface CoinService {
 
  List<Coin> getCoinsById(String[] idsArray);
 
-
+ Coin getCoinsById2(String ids);
 
 }

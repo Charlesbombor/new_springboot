@@ -2,11 +2,16 @@ package com.vixlab.bootcamp.bccryptocoingecko.service.impl;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import com.vixlab.bootcamp.bccryptocoingecko.infra.ApiResponse;
 import com.vixlab.bootcamp.bccryptocoingecko.infra.CoinUtil;
+import com.vixlab.bootcamp.bccryptocoingecko.infra.NullPointer;
+import com.vixlab.bootcamp.bccryptocoingecko.infra.ResourceNotFound;
+import com.vixlab.bootcamp.bccryptocoingecko.infra.Syscode;
 import com.vixlab.bootcamp.bccryptocoingecko.model.Coin;
 import com.vixlab.bootcamp.bccryptocoingecko.service.CoinService;
 import lombok.extern.slf4j.Slf4j;
@@ -48,5 +53,21 @@ public class CoingeckoHolder implements CoinService{
 return filteredCoins;
   }
 
-  
+  @Override
+  public Coin getCoinsById2(String ids) {
+
+    if(ids == null)
+    throw new NullPointer(Syscode.NPE_EXCEPTION);
+
+    Optional<Coin> filteredCoins = this.getCoins().stream() //
+      .filter(coin -> coin.getId() == ids) //
+      .findFirst();
+
+      if(filteredCoins.isPresent())
+      return filteredCoins.get();
+      throw new ResourceNotFound(Syscode.NOTFOUND);
+  }
+
 }
+
+

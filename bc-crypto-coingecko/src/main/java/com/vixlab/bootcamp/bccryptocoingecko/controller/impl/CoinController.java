@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.vixlab.bootcamp.bccryptocoingecko.controller.CoinOperation;
+import com.vixlab.bootcamp.bccryptocoingecko.infra.ApiResponse;
+import com.vixlab.bootcamp.bccryptocoingecko.infra.Syscode;
 import com.vixlab.bootcamp.bccryptocoingecko.model.Coin;
 import com.vixlab.bootcamp.bccryptocoingecko.service.CoinService;
 
@@ -24,10 +26,29 @@ public class CoinController implements CoinOperation {
 
 
   @Override
-  public List<Coin> getCoinsById(String ids) {
+  public ApiResponse<List<Coin>> getCoinsById(String ids) {
     String[] idsArray = ids.split(",");
     List<Coin> coins = coinService.getCoinsById(idsArray);
-    return coins;
+
+    return ApiResponse.<List<Coin>>builder() //
+        .code(Syscode.OK.getCode()) //
+        .message(Syscode.OK.getMessage()) //
+        .data(coins) //
+        .build();
+ 
+  }
+
+  @Override
+  public ApiResponse<Coin> getCoinsById2(String ids) {
+  
+    Coin coins = coinService.getCoinsById2(ids);
+
+    return ApiResponse.<Coin>builder() //
+        .code(Syscode.OK.getCode()) //
+        .message(Syscode.OK.getMessage()) //
+        .data(coins) //
+        .build();
+ 
   }
   
 }

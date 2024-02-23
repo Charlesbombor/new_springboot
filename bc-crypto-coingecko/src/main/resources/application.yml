@@ -1,3 +1,6 @@
+server:
+  port: 8090
+  
 api:
   cgk:
     key : CG-GKPDT69yYkZ7UP69mTP3tRCR
